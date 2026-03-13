@@ -12,24 +12,36 @@ export default function Dashboard() {
     return await db.visitas.where('fecha_visita').above(new Date(inicio).toISOString()).count();
   });
 
+  const handleExport = async () => {
+    const loadingToast = toast.loading('Generando reporte detallado...');
+    const ok = await exportarAExcel();
+    toast.dismiss(loadingToast);
+    
+    if (ok) {
+      toast.success('Excel descargado con éxito');
+    } else {
+      toast.error('No hay datos para exportar');
+    }
+  };
+
   return (
     <div className="grid grid-cols-2 gap-4">
       <div className="card-modern p-6">
         <Users size={20} className="text-indigo-600 mb-2" />
         <h2 className="text-3xl font-black">{total || 0}</h2>
-        <p className="text-[10px] font-bold text-slate-400 uppercase">Total</p>
+        <p className="text-[10px] font-bold text-slate-400 uppercase">Total Visitas</p>
       </div>
       <div className="card-modern p-6">
         <Activity size={20} className="text-emerald-500 mb-2" />
         <h2 className="text-3xl font-black">{hoyCount || 0}</h2>
-        <p className="text-[10px] font-bold text-slate-400 uppercase">Hoy</p>
+        <p className="text-[10px] font-bold text-slate-400 uppercase">Visitas Hoy</p>
       </div>
       <motion.button
         whileTap={{ scale: 0.98 }}
-        onClick={() => exportarAExcel().then(ok => ok ? toast.success('Excel Guardado') : toast.error('Sin datos'))}
-        className="col-span-2 bg-slate-900 text-white p-5 rounded-3xl font-bold flex items-center justify-center gap-2 shadow-xl"
+        onClick={handleExport}
+        className="col-span-2 bg-slate-900 text-white p-5 rounded-3xl font-bold flex items-center justify-center gap-2 shadow-xl hover:bg-slate-800 transition-colors"
       >
-        <FileDown size={18} /> Exportar Reporte
+        <FileDown size={18} /> Exportar Reporte Detallado
       </motion.button>
     </div>
   );

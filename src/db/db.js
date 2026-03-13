@@ -1,6 +1,7 @@
 import Dexie from 'dexie';
 
-export const db = new Dexie('SaludProDB');
+export const db = new Dexie('CareProDatabase');
+
 db.version(1).stores({
-  visitas: 'pacienteId, fecha_visita'
+  visitas: '++id, pacienteId, fecha_visita, nombreCompleto'
 });
