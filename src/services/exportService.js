@@ -7,10 +7,10 @@ export const exportarAExcel = async () => {
 
     const XLSX = await import('xlsx');
     
-    // 1. Preparar Hoja de Visitas General
     const datosVisitas = visitas.map(v => {
-      const { grupoFamiliar, ...resto } = v; // Extraemos grupoFamiliar para que no salga como [object Object]
+      const { grupoFamiliar, ...resto } = v;
       return {
+        Tipo_Registro: v.tipoRegistro?.toUpperCase() || 'N/A',
         ...resto,
         fecha_visita: new Date(v.fecha_visita).toLocaleString(),
         tipoActividad: Array.isArray(v.tipoActividad) ? v.tipoActividad.join(', ') : v.tipoActividad,
@@ -22,7 +22,6 @@ export const exportarAExcel = async () => {
       };
     });
 
-    // 2. Preparar Hoja Detallada de Familiares
     const datosFamiliares = [];
     visitas.forEach(v => {
       if (v.grupoFamiliar && Array.isArray(v.grupoFamiliar)) {
@@ -30,22 +29,19 @@ export const exportarAExcel = async () => {
           datosFamiliares.push({
             Documento_Cabeza_Familia: v.pacienteId,
             Nombre_Cabeza_Familia: v.nombreCompleto,
-            ...f // Incluye todos los campos: nombre, parentesco, EPS, régimen, ocupación, etc.
+            ...f 
           });
         });
       }
     });
 
-    // 3. Crear el Libro y las Hojas
     const libro = XLSX.utils.book_new();
-    
     const hojaVisitas = XLSX.utils.json_to_sheet(datosVisitas);
     const hojaFamiliares = XLSX.utils.json_to_sheet(datosFamiliares);
 
     XLSX.utils.book_append_sheet(libro, hojaVisitas, "Visitas Generales");
     XLSX.utils.book_append_sheet(libro, hojaFamiliares, "Detalle Grupo Familiar");
 
-    // 4. Descargar
     XLSX.writeFile(libro, `Reporte_Completo_Salud_${new Date().getTime()}.xlsx`);
     return true;
   } catch (e) {
