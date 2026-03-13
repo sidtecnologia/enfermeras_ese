@@ -60,10 +60,10 @@ export const PAGE_2 = [
     id: 'entorno_riesgos',
     titulo: 'Entorno y Antecedentes',
     preguntas: [
-      { id: 'factoresRiesgo', label: 'Factores de Riesgo', tipo: 'multiselect', opciones: ['Droga', 'Prostitución', 'Aguas Negras', 'Deslizamientos', 'Basureros', 'Inundaciones'] },
+      { id: 'factoresRiesgo', label: 'Factores de Riesgo', tipo: 'multiselect', opciones: ['Droga', 'Prostitución', 'Aguas Negras', 'Deslizamientos', 'Basureros', 'Inundaciones', 'Ninguno'] },
       { id: 'presenciaAnimales', label: 'Presencia de animales', tipo: 'multiselect', opciones: ['Vectores', 'Perros', 'Gatos', 'Vacas', 'Cerdos', 'Equinos', 'Salvajes', 'Roedores'] },
-      { id: 'antecedentesPersonales', label: 'Antecedentes Personales', tipo: 'multiselect', opciones: ['Hipertensión arterial', 'Diabetes', 'Enfermedad Renal', 'Eventos Coronarios', 'Hemofilia', 'Artritis', 'Otros'] },
-      { id: 'riesgosPersonales', label: 'Riesgos', tipo: 'multiselect', opciones: ['Sedentarismo', 'Alimentación poco saludable', 'Consume Alcohol Frecuentemente', 'Consume cigarrillo', 'Sintomático respiratorio', 'Sintomático de piel', 'Contacto con paciente TBC', 'Consumo de sustancias Psicoactivas', 'Hacinamiento', 'Violencia Intrafamiliar'] }
+      { id: 'antecedentesPersonales', label: 'Antecedentes Personales', tipo: 'multiselect', opciones: ['Hipertensión arterial', 'Diabetes', 'Enfermedad Renal', 'Eventos Coronarios', 'Hemofilia', 'Artritis', 'Otros', 'Ninguno'] },
+      { id: 'riesgosPersonales', label: 'Riesgos', tipo: 'multiselect', opciones: ['Sedentarismo', 'Alimentación poco saludable', 'Consume Alcohol Frecuentemente', 'Consume cigarrillo', 'Sintomático respiratorio', 'Sintomático de piel', 'Contacto con paciente TBC', 'Consumo de sustancias Psicoactivas', 'Hacinamiento', 'Violencia Intrafamiliar', 'Ninguno'] }
     ]
   },
   {
