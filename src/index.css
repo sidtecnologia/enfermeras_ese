@@ -1,0 +1,21 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: 'Plus Jakarta Sans', ui-sans-serif, system-ui;
+}
+
+@layer components {
+  .card-modern {
+    @apply bg-white border border-slate-100 shadow-[0_10px_40px_rgb(0,0,0,0.02)] rounded-[2.5rem];
+  }
+
+  .input-field {
+    @apply w-full p-4 bg-slate-50 border-2 border-transparent rounded-2xl transition-all 
+           duration-200 focus:bg-white focus:border-indigo-500 focus:outline-none 
+           focus:ring-4 focus:ring-indigo-500/10 text-slate-800;
+  }
+
+  .input-error {
+    @apply border-red-500 bg-red-50;
+  }
+}
